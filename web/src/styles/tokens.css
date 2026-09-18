@@ -1,0 +1,162 @@
+/* ============================================================
+ * 上岸作战室 ShoreOps Design Tokens V1.0
+ * 用途：全站设计变量唯一事实源；业务代码只引用 Token，不硬编码色值/散值
+ * 主题：浅色（浅灰蓝主底 + 科技青蓝主色），禁止纯白大底/纯黑文字
+ * 创建时间：2026-09-18
+ * ============================================================ */
+:root {
+  /* ---- 品牌青蓝 ---- */
+  --color-cyan-50: #ecfeff;
+  --color-cyan-100: #cffafe;
+  --color-cyan-200: #a5f3fc;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-400: #22d3ee;
+  --color-primary: #06b6d4;
+  --color-primary-hover: #0891b2;
+  --color-primary-active: #0e7490;
+  --color-cyan-800: #155e75;
+  --color-cyan-900: #164e63;
+
+  /* ---- 中性墨灰 ---- */
+  --color-gray-50: #f5f7f8;
+  --color-gray-100: #ecf0f2;
+  --color-gray-200: #dde4e8;
+  --color-gray-300: #c5cfd6;
+  --color-gray-400: #98a6b1;
+  --color-gray-500: #697884;
+  --color-gray-600: #4a565f;
+  --color-gray-700: #36414a;
+  --color-gray-800: #222a31;
+  --color-gray-900: #12181d;
+
+  /* ---- 背景层 ---- */
+  --color-bg-page: #f3f6f7;
+  --color-bg-warm: #f6f4ee;
+  --color-surface-1: #fbfcfd;
+  --color-surface-2: #ffffff;
+  --color-surface-sunken: #edf1f3;
+
+  /* ---- 语义色 ---- */
+  --color-success-bg: #e7f8f1;
+  --color-success: #10b981;
+  --color-success-text: #065f46;
+  --color-success-solid: #047857;
+  --color-warning-bg: #fef3c7;
+  --color-warning: #f59e0b;
+  --color-warning-text: #92400e;
+  --color-danger-bg: #fee2e2;
+  --color-danger: #ef4444;
+  --color-danger-text: #b91c1c;
+  --color-danger-solid: #dc2626;
+  --color-info-bg: #dbeafe;
+  --color-info: #3b82f6;
+  --color-info-text: #1e40af;
+  --color-info-solid: #2563eb;
+
+  /* ---- 文字/边框语义别名 ---- */
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-tertiary: var(--color-gray-500);
+  --color-text-disabled: var(--color-gray-400);
+  --color-text-link: var(--color-primary-active);
+  --color-text-on-primary: #03212a;
+  --color-border: var(--color-gray-200);
+  --color-border-strong: var(--color-gray-300);
+  --color-border-focus: var(--color-primary-hover);
+
+  /* ---- 战役阶段色带 ---- */
+  --phase-0-bg: #eef2f5;
+  --phase-0-node: #475569;
+  --phase-1-bg: #e9edfe;
+  --phase-1-node: #6366f1;
+  --phase-2-bg: #e2f9fc;
+  --phase-2-node: #06b6d4;
+  --phase-3-bg: #e8f0fe;
+  --phase-3-node: #3b82f6;
+  --phase-4-bg: #fef3df;
+  --phase-4-node: #d97706;
+  --phase-5-bg: #e0f6ee;
+  --phase-5-node: #059669;
+  --phase-6-bg: #d6f0ea;
+  --phase-6-node: #0f766e;
+
+  /* ---- 字体 ---- */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC",
+    sans-serif;
+  --font-mono-num: "DIN Alternate", "Bahnschrift", "SF Pro Display",
+    ui-monospace, "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+
+  /* ---- 间距（8px 基准） ---- */
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ---- 布局尺寸 ---- */
+  --sidebar-width: 240px;
+  --sidebar-width-collapsed: 64px;
+  --tabbar-height: 56px;
+  --content-max-width: 1200px;
+  --touch-target: 44px;
+
+  /* ---- 圆角 ---- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* ---- 阴影 ---- */
+  --shadow-xs: 0 1px 2px rgba(18, 24, 29, 0.04);
+  --shadow-sm: 0 1px 3px rgba(18, 24, 29, 0.06), 0 1px 2px rgba(18, 24, 29, 0.04);
+  --shadow-md: 0 4px 12px rgba(18, 24, 29, 0.07);
+  --shadow-lg: 0 12px 32px rgba(18, 24, 29, 0.1);
+  --shadow-focus: 0 0 0 2px #fbfcfd, 0 0 0 4px rgba(6, 182, 212, 0.45);
+
+  /* ---- 层级 ---- */
+  --z-sticky: 100;
+  --z-dropdown: 1000;
+  --z-overlay: 2000;
+  --z-modal: 2100;
+  --z-toast: 3000;
+
+  /* ---- 动效 ---- */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 250ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 字号三档 */
+html[data-fontsize="normal"] {
+  font-size: 100%;
+}
+html[data-fontsize="lg"] {
+  font-size: 115%;
+}
+html[data-fontsize="xl"] {
+  font-size: 130%;
+}
+
+/* 减弱动效：系统偏好或 <html data-reduce-motion="true"> */
+@media (prefers-reduced-motion: reduce),
+html[data-reduce-motion="true"] {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
