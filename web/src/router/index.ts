@@ -3,12 +3,15 @@
  * @description 定义引导页与八大模块路由，全局守卫负责在未建立战役时重定向到引导页。
  * 创建时间：2026-09-18
  */
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { useAppStore } from '@/stores/app'
 
-/** 路由表 */
+/**
+ * 路由表
+ * 说明：使用 hash 历史并基于 Vite BASE_URL，适配 GitHub Pages 子路径、避免刷新内页 404
+ */
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/onboarding',

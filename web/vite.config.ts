@@ -4,9 +4,11 @@ import { fileURLToPath, URL } from 'node:url'
 
 /**
  * Vite 构建配置
- * 核心用途：配置 Vue 插件、路径别名 @ 指向 src、vitest 单元测试环境（jsdom）
+ * 核心用途：配置 Vue 插件、路径别名 @ 指向 src、GitHub Pages 子路径 base、vitest 单元测试环境（jsdom）
+ * 说明：base 设为 '/ShoreOps/' 以适配 GitHub Pages 的子路径托管（仓库名 ShoreOps）
  */
 export default defineConfig({
+  base: '/ShoreOps/',
   plugins: [vue()],
   resolve: {
     alias: {

@@ -1,12 +1,21 @@
-# 上岸作战室 ShoreOps · 项目介绍
+# 上岸作战室 ShoreOps
 
 > 目标日倒排，每一天都朝着 Offer 开火。
 >
 > 一款以「D-Day 倒排作战规划」为核心的求职指挥中枢 PWA。
 
-- 创建时间：2026-09-18
-- 文档性质：基于当前代码实现的项目说明（只描述已完成功能，不含未落地规划）
-- 仓库结构：`web/`（前端 PWA）、`server/`（可选加密同步后端）、`docs/`（产品与评审文档）
+[![Frontend CI](https://github.com/xiaomutou-git/ShoreOps/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaomutou-git/ShoreOps/actions/workflows/ci.yml)
+[![Deploy GitHub Pages](https://github.com/xiaomutou-git/ShoreOps/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/xiaomutou-git/ShoreOps/actions/workflows/deploy-pages.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Vue 3](https://img.shields.io/badge/Vue-3-42b883.svg)](https://vuejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6.svg)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5-646cff.svg)](https://vitejs.dev/)
+
+🚀 **在线体验（GitHub Pages）**：https://xiaomutou-git.github.io/ShoreOps/
+
+- 🖥 在线地址：<https://xiaomutou-git.github.io/ShoreOps/>
+- 📦 仓库结构：`web/`（前端 PWA）、`server/`（可选加密同步后端）、`docs/`（产品与评审文档）
+- 📖 部署步骤见 [docs/部署指南.md](./docs/部署指南.md)（push 到 main 即自动部署到 Pages）
 
 ---
 
