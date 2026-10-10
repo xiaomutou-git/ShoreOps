@@ -1,8 +1,12 @@
 /**
  * @file 服务端运行配置
- * @description 集中读取环境变量并给出安全默认值；生产环境必须通过环境变量覆盖 JWT 密钥。
+ * @description 集中读取环境变量；JWT 密钥必须由环境提供，仓库内不保留任何可用的默认密钥。
  * 创建时间：2026-09-18
+ * 变更记录：2026-10-10 安全修复——移除硬编码的 JWT 回退密钥（原 fail-open 行为），
+ *           改为生产环境缺失即拒绝启动、开发/测试环境每次启动生成一次性随机密钥；
+ *           CORS 在生产环境禁止通配符。
  */
+import { randomBytes } from 'node:crypto'
 
 /**
  * 配置对象类型
@@ -27,24 +31,47 @@ export interface AppConfig {
 /**
  * 读取并组装配置
  *
+ * 安全策略（fail-closed）：
+ * - 生产环境：必须通过 JWT_SECRET 提供 ≥32 位密钥，否则拒绝启动；
+ * - 开发/测试环境：未配置时在本次启动内生成一次性随机密钥（仅本进程有效，
+ *   重启即失效），绝不使用任何硬编码的公开默认值；
+ * - CORS：生产环境禁止 '*'，必须显式配置来源白名单。
+ *
  * @returns {AppConfig} 解析后的配置
- * @throws {Error} 当生产环境未提供 JWT_SECRET 时抛出，阻止使用弱密钥启动
+ * @throws {Error} 生产环境缺少有效 JWT_SECRET 或使用 CORS 通配符时抛出
  */
 function loadConfig(): AppConfig {
   const isProduction = process.env.NODE_ENV === 'production'
   const secret = process.env.JWT_SECRET
+
   if (isProduction && (!secret || secret.length < 32)) {
     throw new Error('生产环境必须通过环境变量提供至少 32 位的 JWT_SECRET')
   }
+  if (!secret) {
+    console.warn(
+      '[config] 未设置 JWT_SECRET：本次启动已生成一次性随机密钥（仅限开发/测试，重启后旧令牌全部失效）。'
+    )
+  }
+
+  const corsRaw = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.trim() : ''
+  const corsOrigin: string | string[] =
+    !corsRaw || corsRaw === '*'
+      ? '*'
+      : corsRaw
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean)
+  if (isProduction && corsOrigin === '*') {
+    throw new Error('生产环境必须通过环境变量 CORS_ORIGIN 配置来源白名单，禁止使用 "*"')
+  }
+
   return {
     port: Number(process.env.PORT ?? 4000),
-    // 开发环境使用固定随机风格密钥；生产强制外部注入
-    jwtSecret: secret ?? '***REMOVED-HARDCODED-JWT-FALLBACK-SECRET***',
+    // 生产：外部注入；开发/测试：一次性随机密钥（不再是公开的固定回退值）
+    jwtSecret: secret ?? randomBytes(32).toString('hex'),
     jwtExpiresIn: process.env.JWT_EXPIRES_IN ?? '7d',
     dbPath: process.env.DB_PATH ?? './data/shoreops.db',
-    corsOrigin: process.env.CORS_ORIGIN
-      ? process.env.CORS_ORIGIN.split(',').map((s) => s.trim())
-      : '*',
+    corsOrigin,
     bcryptRounds: Number(process.env.BCRYPT_ROUNDS ?? 10),
     isProduction
   }

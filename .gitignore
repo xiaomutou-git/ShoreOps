@@ -30,6 +30,8 @@ pnpm-debug.log*
 Thumbs.db
 
 # 环境变量
-.env
-.env.local
 
+# 环境变量（覆盖 .env.production / .env.*.local 等全部变体）
+.env
+.env.*
+!.env.example
